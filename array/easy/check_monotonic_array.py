@@ -24,6 +24,17 @@ class Solution:
         return True
     else:
       return True
+    
+  def isMonotonicSimple(self, A: List[int]) -> bool:
+    increasing = decreasing = True
+
+    for i in range(len(A) - 1):
+        if A[i] > A[i+1]:
+            increasing = False
+        if A[i] < A[i+1]:
+            decreasing = False
+
+    return increasing or decreasing
 
 solution = Solution()
 print(solution.isMonotonic([5,4,3,8]))
