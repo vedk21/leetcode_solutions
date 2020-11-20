@@ -8,17 +8,35 @@ class Solution:
   def commonChars(self, A: List[str]) -> List[str]:
     if len(A) > 1:
       hMap = {}
+      result = []
+
       for char in A[0]:
         if char in hMap.keys():
-          hMap[char] += 1
+          hMap[char][0] += 1
         else:
-          hMap[char] = 1
+          hMap[char] = [1]
 
       for i in range(1, len(A)):
-        pass
+        for char in A[i]:
+          if char in hMap.keys():
+            if len(hMap[char]) < i:
+              del hMap[char]
+            elif len(hMap[char]) == i:
+              hMap[char].append(1)
+            else:
+              hMap[char][i] += 1
+
+      for key, val in hMap.items():
+        if len(val) == len(A):
+          minEle = min(val)
+          for i in range(minEle):
+            result.append(key)
+
+      return result
+
     else:
       return [char for char in A[0]]
 
 
 solution = Solution()
-print(solution.commonChars(["bella","zzbc","roller"]))
+print(solution.commonChars(["cool","lock","cook"]))
