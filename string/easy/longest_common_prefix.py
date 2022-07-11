@@ -10,8 +10,6 @@ class Solution:
     # find min length string
     idx, size = self.findMinStr(strs)
 
-    print(idx, size)
-
     if size:
       prefix = ''
       for i in range(size):
